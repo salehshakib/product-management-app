@@ -1,15 +1,14 @@
 "use client";
 
 import { api } from "@/api/endpoints/api";
-import useFetchQuery from "@/hooks/queries/use-fetch-query";
-import { ICategory } from "@/types";
-import { DataTable, ColumnDef } from "@/components/common/data-table";
+import { ColumnDef, DataTable } from "@/components/common/data-table";
 import { SearchBar } from "@/components/common/search-bar";
-import { useCustomDebounce } from "@/hooks/use-debounce";
-import { useRouter, useSearchParams } from "next/navigation";
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import useFetchQuery from "@/hooks/queries/use-fetch-query";
+import { useCustomDebounce } from "@/hooks/use-debounce";
+import { ICategory } from "@/types";
 import { Plus } from "lucide-react";
+import { useRouter, useSearchParams } from "next/navigation";
 
 interface CategoriesPageProps {}
 
