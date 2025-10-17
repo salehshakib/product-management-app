@@ -171,4 +171,4 @@ For issues or questions, please contact the development team at BitechX Solution
 
 ---
 
-Built with dedication by BitechX Solutions
+Built with dedication by Saleh Shakib
