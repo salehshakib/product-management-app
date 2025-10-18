@@ -2,6 +2,7 @@
 
 import { useRouter, usePathname } from "next/navigation";
 import { useEffect } from "react";
+import { useAppSelector } from "@/store/hooks";
 
 export default function AuthProvider({
   children,
@@ -10,9 +11,9 @@ export default function AuthProvider({
 }) {
   const router = useRouter();
   const pathname = usePathname();
+  const token = useAppSelector((state) => state.auth.token);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
     const isLoginPage = pathname === "/login";
 
     // If no token and not on login page, redirect to login
@@ -23,7 +24,7 @@ export default function AuthProvider({
     else if (token && isLoginPage) {
       router.push("/");
     }
-  }, [pathname, router]);
+  }, [pathname, router, token]);
 
   return <>{children}</>;
 }

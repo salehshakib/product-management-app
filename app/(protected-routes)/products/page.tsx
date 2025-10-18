@@ -1,17 +1,16 @@
 "use client";
 
 import { api } from "@/api/endpoints/api";
-import useFetchQuery from "@/hooks/queries/use-fetch-query";
-import { IProduct } from "@/types";
-import { DataTable, ColumnDef } from "@/components/common/data-table";
-import { SearchBar } from "@/components/common/search-bar";
 import { CategoryFilter } from "@/components/common/category-filter";
-import { useCustomDebounce } from "@/hooks/use-debounce";
-import { useRouter, useSearchParams } from "next/navigation";
-import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import { Plus } from "lucide-react";
+import { ColumnDef, DataTable } from "@/components/common/data-table";
+import { SearchBar } from "@/components/common/search-bar";
 import { ProductActionCells } from "@/components/products/product-action-cells";
+import { Button } from "@/components/ui/button";
+import useFetchQuery from "@/hooks/queries/use-fetch-query";
+import { useCustomDebounce } from "@/hooks/use-debounce";
+import { IProduct } from "@/types";
+import { Plus } from "lucide-react";
+import { useRouter, useSearchParams } from "next/navigation";
 
 interface ProductsPageProps {}
 
