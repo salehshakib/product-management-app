@@ -13,6 +13,8 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { usePostData } from "@/hooks/mutations/use-post-data";
+import { setToken } from "@/store/slices/authSlice";
+import { useAppDispatch } from "@/store/hooks";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
@@ -26,11 +28,11 @@ type LoginFormValues = z.infer<typeof loginSchema>;
 
 export default function LoginPage() {
   const router = useRouter();
+  const dispatch = useAppDispatch();
 
   const { mutate, isPending } = usePostData({
     onSuccess: (data) => {
-      console.log(data);
-      localStorage.setItem("token", data?.token);
+      dispatch(setToken(data?.token));
       router.push("/");
       showToastNotification({
         message: "Logged in successfully",

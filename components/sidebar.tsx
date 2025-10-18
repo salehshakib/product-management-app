@@ -81,7 +81,7 @@ function SidebarContent() {
           <Button
             variant="ghost"
             onClick={handleLogout}
-            className="w-full justify-start hover:bg-destructive hover:text-destructive-foreground transition-colors"
+            className="w-full justify-start "
           >
             <LogOut className="mr-2 h-4 w-4" />
             Logout

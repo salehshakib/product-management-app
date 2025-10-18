@@ -1,4 +1,6 @@
 import { BASE_URL } from "@/api/endpoints/base-url";
+import { store } from "@/store/store";
+import { clearToken } from "@/store/slices/authSlice";
 
 const buildUrlWithParams = (url: string, params?: Record<string, any>) => {
   if (!url || typeof url !== "string") {
@@ -27,9 +29,8 @@ const customFetch = async (
   body: any = null,
   isMultipart = false
 ) => {
-  // Get token if available
-  const token =
-    typeof window !== "undefined" ? localStorage.getItem("token") : null;
+  // Get token from Redux store
+  const token = store.getState().auth.token;
 
   const headers: Record<string, string> = {
     ...(token ? { Authorization: `Bearer ${token}` } : {}),
@@ -58,7 +59,7 @@ const customFetch = async (
     if (!response.ok) {
       // Handle unauthorized errors
       if (response.status === 401 && typeof window !== "undefined") {
-        localStorage.removeItem("token");
+        store.dispatch(clearToken());
         window.location.href = "/login";
         throw new Error("Unauthorized. Redirecting to login...");
       }
@@ -70,7 +71,7 @@ const customFetch = async (
       responseData.message === "Authorization token required." &&
       typeof window !== "undefined"
     ) {
-      localStorage.removeItem("token");
+      store.dispatch(clearToken());
       window.location.href = "/login";
       throw new Error("Authorization token required. Redirecting to login...");
     }
